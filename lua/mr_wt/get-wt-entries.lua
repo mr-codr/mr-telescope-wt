@@ -37,6 +37,9 @@ local getWtEntries = function()
 	end
 	handle:close()
 
+	if worktrees[1][2] == "bare" then
+		table.remove(worktrees, 1)
+	end
 	return worktrees
 end
 

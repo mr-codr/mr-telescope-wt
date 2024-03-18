@@ -40,18 +40,8 @@ M.getBranch = function(value)
 end
 
 M.format = function(worktree)
-	if worktree.isBareRoot then
-		return worktree.path .. " (bare root)"
-	end
 	local shotHash = string.sub(worktree.hash, 1, 8)
 	return worktree.branch .. " [" .. shotHash .. "]"
-end
-
-M.getOrdinal = function(worktree)
-	if worktree.isBareRoot then
-		return 0
-	end
-	return worktree.branch
 end
 
 return M

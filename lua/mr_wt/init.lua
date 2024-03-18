@@ -21,13 +21,11 @@ return function(opts)
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
-					local selectedWtPath = selection.value.path
-
-					if selection.value.isBareRoot then
-						print("Can't go to bare repo root")
+					if selection == nil then
 						return
 					end
 
+					local selectedWtPath = selection.value.path
 					local currentBuf = vim.api.nvim_get_current_buf()
 					local isModified = vim.api.nvim_buf_get_option(currentBuf, "modified")
 					if isModified then

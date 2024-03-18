@@ -31,15 +31,13 @@ local function wtEntryMaker(entry)
 			worktree.hash = u.getHash(line)
 		elseif u.isBranch(line) then
 			worktree.branch = u.getBranch(line)
-		else
-			worktree.isBareRoot = true
 		end
 	end
 
 	return {
 		value = worktree,
 		display = u.format(worktree),
-		ordinal = u.getOrdinal(worktree),
+		ordinal = worktree.branch,
 	}
 end
 
