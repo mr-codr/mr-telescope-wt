@@ -43,6 +43,11 @@ return function(opts)
 						vim.cmd(":edit " .. currentBufPathInSelectedWt.filename)
 					end
 					vim.cmd(":clearjumps")
+
+					local has_nvimtree, api = pcall(require, "nvim-tree.api")
+					if has_nvimtree then
+						api.tree.open({ current_window = true })
+					end
 				end)
 				return true
 			end,
