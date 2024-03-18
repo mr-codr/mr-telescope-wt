@@ -41,13 +41,13 @@ return function(opts)
 					vim.cmd(":cd " .. selectedWtPath)
 					if Path:new(currentBufPathInSelectedWt):exists() then
 						vim.cmd(":edit " .. currentBufPathInSelectedWt.filename)
+					else
+						local has_nvimtree, api = pcall(require, "nvim-tree.api")
+						if has_nvimtree then
+							api.tree.open({ current_window = true })
+						end
 					end
 					vim.cmd(":clearjumps")
-
-					local has_nvimtree, api = pcall(require, "nvim-tree.api")
-					if has_nvimtree then
-						api.tree.open({ current_window = true })
-					end
 				end)
 				return true
 			end,
